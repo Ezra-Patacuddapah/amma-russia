@@ -544,6 +544,22 @@
             width: 100%;
         }
 
+        /* Add to styles */
+        .developer-info {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .developer-info a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .developer-info a:hover {
+            text-decoration: underline;
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
@@ -665,12 +681,12 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home" class="active nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#event" class="nav-link">Event</a></li>
-                    <li><a href="#artist" class="nav-link">Artist</a></li>
-                    <li><a href="#committee" class="nav-link">Committee</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <li><a href="#home" class="active nav-link lang-en">Home</a><a href="#home" class="nav-link lang-ru" style="display:none">Главная</a></li>
+                    <li><a href="#about" class="nav-link lang-en">About</a><a href="#about" class="nav-link lang-ru" style="display:none">О нас</a></li>
+                    <li><a href="#event" class="nav-link lang-en">Event</a><a href="#event" class="nav-link lang-ru" style="display:none">Мероприятие</a></li>
+                    <li><a href="#artist" class="nav-link lang-en">Artist</a><a href="#artist" class="nav-link lang-ru" style="display:none">Артист</a></li>
+                    <li><a href="#committee" class="nav-link lang-en">Committee</a><a href="#committee" class="nav-link lang-ru" style="display:none">Комитет</a></li>
+                    <li><a href="#contact" class="nav-link lang-en">Contact</a><a href="#contact" class="nav-link lang-ru" style="display:none">Контакты</a></li>
                 </ul>
             </nav>
             
@@ -682,6 +698,7 @@
     </header>
 
     <!-- Hero Section (English) -->
+    <div id="countdown" class="countdown"></div>
     <section class="hero" id="home">
         <div class="container hero-content fade-in">
             <h1 class="lang-en">Onam Festival Celebration 2025</h1>
@@ -977,6 +994,11 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-telegram"></i></a>
                 <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+
+            <div class="developer-info fade-in delay-3">
+                <p class="lang-en">Website developed by Ezra Christian: <a href="tel:+79778667419">+7 977 866 74 19</a> | <a href="mailto:ezrapatacuddapah@gmail.com">ezrapatacuddapah@gmail.com</a></p>
+                <p class="lang-ru" style="display:none">Сайт разработан Ezra Christian: <a href="tel:+79778667419">+7 977 866 74 19</a> | <a href="mailto:ezrapatacuddapah@gmail.com">ezrapatacuddapah@gmail.com</a></p>
             </div>
             
             <div class="copyright fade-in delay-3">
