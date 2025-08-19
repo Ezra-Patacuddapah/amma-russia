@@ -417,6 +417,33 @@
             text-decoration: underline;
         }
 
+        /* Countdown Styles */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .countdown-item span {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-item small {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -488,6 +515,7 @@
         }
 
         .nav-menu {
+            list-style: none;
             display: flex;
             gap: 20px;
         }
@@ -959,6 +987,43 @@
     </footer>
 
     <script>
+        // Countdown Timer (add this to the <script> section)
+        function updateCountdown() {
+            const eventDate = new Date("September 13, 2025 17:00:00").getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `
+                <div class="countdown-item">
+                    <span>${days}</span>
+                    <small class="lang-en">Days</small>
+                    <small class="lang-ru" style="display:none">Дней</small>
+                </div>
+                <div class="countdown-item">
+                    <span>${hours}</span>
+                    <small class="lang-en">Hours</small>
+                    <small class="lang-ru" style="display:none">Часов</small>
+                </div>
+                <div class="countdown-item">
+                    <span>${minutes}</span>
+                    <small class="lang-en">Minutes</small>
+                    <small class="lang-ru" style="display:none">Минут</small>
+                </div>
+                <div class="countdown-item">
+                    <span>${seconds}</span>
+                    <small class="lang-en">Seconds</small>
+                    <small class="lang-ru" style="display:none">Секунд</small>
+                </div>
+            `;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
