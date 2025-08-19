@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMMA Onam Celebration 2025</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#008000">
     <style>
         :root {
             --primary: #008000;
@@ -636,12 +643,10 @@
             transform: translateY(-3px);
         }
 
-        /* Committee List Image Styles */
-        .committee-list {
-            background: var(--light);
-        }
-
+        /* Committee List Image Styles - UPDATED */
         .committee-image-container {
+            cursor: zoom-in;
+            position: relative;
             text-align: center;
             padding: 20px;
             background: var(--white);
@@ -654,7 +659,7 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
+            transition: transform 0.3s ease;
         }
 
         .committee-list-image:hover {
@@ -662,39 +667,35 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
         }
 
-        .image-caption {
-            margin-top: 15px;
-            font-style: italic;
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Add zoom functionality */
-        .committee-image-container {
-            cursor: zoom-in;
-            position: relative;
-        }
-
+        /* Zoomed state */
         .committee-list-image.zoomed {
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.5);
-            z-index: 1000;
+            transform: translate(-50%, -50%) scale(1.2);
+            z-index: 1001; /* Higher than overlay */
             max-width: 90vw;
             max-height: 90vh;
             cursor: zoom-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        /* Overlay - FIXED */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 999;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000; /* Lower than zoomed image */
             display: none;
+            cursor: zoom-out;
+        }
+
+        /* Prevent body scroll when zoomed */
+        body.no-scroll {
+            overflow: hidden;
         }
 
         /* Responsive Styles */
@@ -1201,23 +1202,9 @@
     </footer>
 
     <script>
+
         // Countdown Timer (add this to the <script> section)
             
-        // Add zoom functionality
-        const committeeImage = document.querySelector('.committee-list-image');
-        const overlay = document.createElement('div');
-        overlay.className = 'overlay';
-        document.body.appendChild(overlay);
-
-        committeeImage.addEventListener('click', function() {
-            this.classList.toggle('zoomed');
-            overlay.style.display = this.classList.contains('zoomed') ? 'block' : 'none';
-        });
-
-        overlay.addEventListener('click', function() {
-            committeeImage.classList.remove('zoomed');
-            this.style.display = 'none';
-        });
         function updateCountdown() {
             const eventDate = new Date("September 13, 2025 17:00:00").getTime();
             const now = new Date().getTime();
