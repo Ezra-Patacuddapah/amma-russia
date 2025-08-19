@@ -55,20 +55,27 @@
             flex-wrap: wrap;
         }
 
+        /* Logo Styles */
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .logo img {
-            height: 60px;
+        .logo-img {
+            height: 70px;
             width: auto;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: bold;
+            line-height: 1.3;
         }
 
         .logo-text span {
@@ -544,20 +551,89 @@
             width: 100%;
         }
 
-        /* Add to styles */
-        .developer-info {
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            opacity: 0.8;
+        /* Developer Credit Styles */
+        .developer-credit {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .developer-credit h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .developer-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .developer-card:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .developer-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--secondary);
+        }
+
+        .developer-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .developer-info h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .developer-info p {
+            margin: 8px 0;
         }
 
         .developer-info a {
-            color: var(--secondary);
+            color: var(--white);
             text-decoration: none;
+            transition: var(--transition);
         }
 
         .developer-info a:hover {
+            color: var(--secondary);
             text-decoration: underline;
+        }
+
+        .developer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .developer-social a {
+            color: var(--white);
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .developer-social a:hover {
+            color: var(--secondary);
+            transform: translateY(-3px);
         }
 
         /* Responsive Styles */
@@ -572,6 +648,15 @@
         }
 
         @media (max-width: 768px) {
+
+            .logo-img {
+                height: 60px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
             .header-content {
                 flex-direction: column;
                 gap: 20px;
@@ -672,8 +757,11 @@
     <header>
         <div class="container header-content">
             <div class="logo">
-                <div class="logo-circle">AMMA</div>
-                <div class="logo-text">All Moscow Malayalee <span>Association</span></div>
+                <img src="images/amma-logo.png" alt="AMMA Logo" class="logo-img">
+                <div class="logo-text">
+                    <div>All Moscow Malayalee</div>
+                    <div>Association <span>(AMMA)</span></div>
+                </div>
             </div>
             
             <nav>
@@ -996,9 +1084,24 @@
                 <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
 
-            <div class="developer-info fade-in delay-3">
-                <p class="lang-en">Website developed by Ezra Christian: <a href="tel:+79778667419">+7 977 866 74 19</a> | <a href="mailto:ezrapatacuddapah@gmail.com">ezrapatacuddapah@gmail.com</a></p>
-                <p class="lang-ru" style="display:none">Сайт разработан Ezra Christian: <a href="tel:+79778667419">+7 977 866 74 19</a> | <a href="mailto:ezrapatacuddapah@gmail.com">ezrapatacuddapah@gmail.com</a></p>
+            <div class="developer-credit fade-in delay-3">
+                <h4 class="lang-en">Website Development</h4>
+                <h4 class="lang-ru" style="display:none">Разработка сайта</h4>
+                <div class="developer-card">
+                    <div class="developer-photo">
+                        <img src="images/ezra-christian.jpg" alt="Ezra Christian">
+                    </div>
+                    <div class="developer-info">
+                        <h3>Ezra Christian</h3>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+79778667419">+7 977 866 74 19</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:ezrapatacuddapah@gmail.com">ezrapatacuddapah@gmail.com</a></p>
+                        <div class="developer-social">
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="copyright fade-in delay-3">
@@ -1077,6 +1180,13 @@
         const ruBtn = document.getElementById('ruBtn');
         
         enBtn.addEventListener('click', () => {
+            // Make sure this is in your language switch function
+            const developerTitle = document.querySelector('.developer-credit h4.lang-ru');
+            if (ruBtn.classList.contains('active')) {
+                developerTitle.style.display = 'block';
+            } else {
+                developerTitle.style.display = 'none';
+            }
             // Show English content
             document.querySelectorAll('.lang-en').forEach(el => {
                 el.style.display = 'block';
