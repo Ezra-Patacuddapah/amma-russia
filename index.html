@@ -636,6 +636,67 @@
             transform: translateY(-3px);
         }
 
+        /* Committee List Image Styles */
+        .committee-list {
+            background: var(--light);
+        }
+
+        .committee-image-container {
+            text-align: center;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .committee-list-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .committee-list-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-caption {
+            margin-top: 15px;
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Add zoom functionality */
+        .committee-image-container {
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .committee-list-image.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.5);
+            z-index: 1000;
+            max-width: 90vw;
+            max-height: 90vh;
+            cursor: zoom-out;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            display: none;
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
@@ -700,6 +761,14 @@
             .detail-icon {
                 margin-right: 0;
                 margin-bottom: 10px;
+            }
+
+            .committee-image-container {
+                padding: 15px;
+            }
+            
+            .image-caption {
+                font-size: 0.8rem;
             }
         }
 
@@ -935,7 +1004,7 @@
             <div class="committee-grid">
                 <div class="member-card fade-in delay-1">
                     <div class="member-image">
-                        <img src="https://i.ibb.co/XkCkkSMg/Dr-Cherian-Eapan.jpg" alt="Dr. Cherian Eapan">
+                        <img src="https://i.ibb.co/7JXMn58k/oie-2-Aabek-Sq-Ma-NC.jpg" alt="Dr. Cherian Eapan">
                     </div>
                     <div class="member-info">
                         <h3>Dr. Cherian Eapan</h3>
@@ -1008,6 +1077,26 @@
                         <p class="lang-en">Joint Secretary</p>
                         <p class="lang-ru" style="display: none;">Совместный секретарь</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Committee List Image Section -->
+    <section class="section committee-list">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2 class="lang-en">Official Committee List</h2>
+                <h2 class="lang-ru" style="display: none;">Официальный список комитета</h2>
+            </div>
+            
+            <div class="committee-image-container fade-in delay-1">
+                <img src="https://i.ibb.co/VYqyqpt4/amma-association-executive-committee.jpg" 
+                    alt="AMMA Executive Committee 2025-2027" 
+                    class="committee-list-image">
+                <div class="image-caption">
+                    <p class="lang-en">Official AMMA Executive Committee 2025-2027</p>
+                    <p class="lang-ru" style="display: none;">Официальный исполнительный комитет АММА 2025-2027</p>
                 </div>
             </div>
         </div>
@@ -1113,6 +1202,22 @@
 
     <script>
         // Countdown Timer (add this to the <script> section)
+            
+        // Add zoom functionality
+        const committeeImage = document.querySelector('.committee-list-image');
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+
+        committeeImage.addEventListener('click', function() {
+            this.classList.toggle('zoomed');
+            overlay.style.display = this.classList.contains('zoomed') ? 'block' : 'none';
+        });
+
+        overlay.addEventListener('click', function() {
+            committeeImage.classList.remove('zoomed');
+            this.style.display = 'none';
+        });
         function updateCountdown() {
             const eventDate = new Date("September 13, 2025 17:00:00").getTime();
             const now = new Date().getTime();
